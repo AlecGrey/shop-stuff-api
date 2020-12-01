@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
     def index
         items = Item.all
-        render :json
+        render json: items, except: [:created_at, :updated_at, :description]
     end
 
 end
