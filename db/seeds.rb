@@ -5,10 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'rest-client'
-require 'json'
-require 'pry'
-
 max_taxonomy = 1484
 # items = []
 
@@ -27,7 +23,6 @@ until Item.all.length == 100 do
 
         # items << below hash
         Item.create({
-            item_id: etsy_item['listing_id'],
             name: etsy_item['title'],
             description: etsy_item['description'],
             price: etsy_item['price'].to_f,
