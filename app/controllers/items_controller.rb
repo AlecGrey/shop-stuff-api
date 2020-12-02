@@ -10,10 +10,14 @@ class ItemsController < ApplicationController
         end
 
         items = items.slice(10 * (page_number - 1), 10)
-        render json: items, except: [:created_at, :updated_at, :description]
+        render json: {
+            page: page_number,
+            items: items, except: [:created_at, :updated_at, :description]
+        }
     end
 
     def categories
+        # action to render JSON of all categories of items in the database
         types = Item.all.map {|i| i.item_type}.uniq.sort
         render json: {
             categories: types
