@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
 
     def index
-        page_number = 1
+        # page number defaults to 1 unless one is given
+        page_number = params[:page] ? params[:page].to_i : 1
+        # byebug
 
         if params[:category] || params[:query]
             items = filter_items(items: Item.all, query: params[:query], category: params[:category])
