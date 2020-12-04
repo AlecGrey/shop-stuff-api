@@ -8,7 +8,7 @@
 max_taxonomy = 1484
 # items = []
 
-until Item.all.length == 100 do
+until Item.all.length == 1000 do
 
     data = RestClient.get("https://openapi.etsy.com/v2/listings/active?taxonomy_id=#{rand(1..max_taxonomy)}&api_key=hpe7uoia9bb85qcm5gh459xq")
     json = JSON.parse(data)
