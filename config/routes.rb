@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'items/categories', to: 'items#categories'
   get 'items/sample-item', to: 'items#sample_item'
 
-    #  ~~ SHOPPING CART ROUTES ~~ #
+    #  ~~ CART ROUTES ~~ #
   post 'carts/add', to: 'carts#add_item'
   resources :carts, only: [:show, :create]
+
+    # ~~ SCORES ROUTES ~~ #
+  resources :scores, only: [:create]
+  
 end
