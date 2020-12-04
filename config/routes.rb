@@ -8,9 +8,12 @@ Rails.application.routes.draw do
 
     #  ~~ CART ROUTES ~~ #
   post 'carts/add', to: 'carts#add_item'
+  get 'carts/:id/empty', to: 'carts#empty'
   resources :carts, only: [:show, :create]
 
     # ~~ SCORES ROUTES ~~ #
   resources :scores, only: [:create]
-  
+
+    # ~~ USERS ROUTES ~~ #
+  resources :users, only: [:create]
 end

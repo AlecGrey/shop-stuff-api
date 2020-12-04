@@ -4,8 +4,12 @@ class ScoresController < ApplicationController
         # byebug
         points = Cart.find(params[:cart_id]).items.length * 100
         points = points - (params[:skips] * 50)
-        score = Score.create(score: points, name: sample_name)
-        render json: score, only: [:score, :name]
+        user = User.find(params[:user_id])
+        score = Score.create(score: points, user_id: user.id)
+        render json: {
+            score: score.score,
+            user: user.name
+        }
     end
 
     private

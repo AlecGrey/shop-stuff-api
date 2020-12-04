@@ -6,20 +6,21 @@ class CartsController < ApplicationController
     end
 
     def create
-        # receive a user_id and find or create a cart instance. Render as JSON.
-        if params[:user_id]
-            cart = Cart.find(params[:user_id])
-        else
-            cart = Cart.create
-        end
-        render_cart_json(cart)
+        render_cart_json(Cart.create)
     end
 
     def add_item
-        # byebug
         cart = Cart.find(params[:cart_id])
         cart.items << Item.find(params[:item_id])
         render_cart_json(cart)
+    end
+
+    def empty
+        cart = Cart.find(params[:id])
+        cart.cart_items.destroy_all
+        render json: {
+            message: 'your cart has been emptied.'
+        }
     end
 
     private
