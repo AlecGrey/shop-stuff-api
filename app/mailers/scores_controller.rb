@@ -1,5 +1,14 @@
 class ScoresController < ApplicationController
 
+    def index
+        scores = Score.all
+        render json: scores, 
+            only: :score,
+            include: {
+                user: {only: :name}
+            }
+    end
+
     def create
         # byebug
         points = Cart.find(params[:cart_id]).items.length * 100

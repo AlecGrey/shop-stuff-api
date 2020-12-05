@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:show, :create]
 
     # ~~ SCORES ROUTES ~~ #
-  resources :scores, only: [:create]
+  resources :scores, only: [:index, :create]
 
     # ~~ USERS ROUTES ~~ #
   resources :users, only: [:create]
