@@ -1,11 +1,11 @@
 class ScoresController < ApplicationController
 
     def index
-        scores = Score.all
+        scores = Score.all.sort_by {|s| s.score}.reverse.slice(0, 10)
         render json: scores, 
             only: :score,
             include: {
-                user: {only: :name}
+                user: {only: [:name, :id]}
             }
     end
 
@@ -24,7 +24,7 @@ class ScoresController < ApplicationController
     private
 
     def sample_name
-        names = [
+        [
             'Alex',
             'Amanda',
             'Clay',
@@ -44,8 +44,7 @@ class ScoresController < ApplicationController
             'Tony',
             'Will L',
             'Will G'
-        ]
-        names.sample
+        ].sample
     end
 
 end

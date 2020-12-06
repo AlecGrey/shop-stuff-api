@@ -1,9 +1,23 @@
 class UsersController < ApplicationController
 
     def create
-        # byebug
         user = User.find_or_create_by(name: params[:user_name])
-        render json: user, only: [:name, :id]
+        render_user_json(user)
     end
 
+    def update
+        user = User.find(params[:id])
+        user.update(sanitized_params)
+        render_user_json(user)
+    end
+
+    private
+
+    def sanitized_params
+        params.require(:user).permit(:name)
+    end
+
+    def render_user_json(user_instance)
+        render json: user_instance, only: [:name, :id]
+    end
 end

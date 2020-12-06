@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   resources :scores, only: [:index, :create]
 
     # ~~ USERS ROUTES ~~ #
-  resources :users, only: [:create]
+  resources :users, only: [:create, :update, :destroy]
 end
