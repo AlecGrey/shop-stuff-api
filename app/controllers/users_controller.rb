@@ -11,6 +11,14 @@ class UsersController < ApplicationController
         render_user_json(user)
     end
 
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        render json: {
+            message: 'the user has been removed from the database.'
+        }
+    end
+
     private
 
     def sanitized_params
