@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
     # ~~ USERS ROUTES ~~ #
   resources :users, only: [:create, :update, :destroy]
+  get 'login', to: 'users#login'
 end
