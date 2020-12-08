@@ -26,10 +26,10 @@ class UsersController < ApplicationController
         # byebug
         user = User.find(params[:id])
         user.update(sanitized_params)
-        if user.errors
-            render json: {message: 'could not update user!'}
-        else
+        if user.name == params[:user][:name]
             render_user_json(user)
+        else
+            render json: {message: 'could not update user!'}
         end
     end
 

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_many :scores, dependent: :destroy
 
-    validates :name, uniqueness: :true
+    validates :name, uniqueness: { case_sensitive: false }
     validates :name, presence: :true
     validate :name_cannot_be_admin
 
@@ -10,4 +10,5 @@ class User < ApplicationRecord
             errors.add(:name, "Cannot be 'admin'")
         end
     end
+
 end
