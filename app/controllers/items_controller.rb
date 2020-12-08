@@ -4,10 +4,13 @@ class ItemsController < ApplicationController
         # page number defaults to 1 unless one is given
         items = get_filtered_items
         items = items.sort_by {|i| i.name}
+        total_pages = get_total_page_count(items)
         items = items.slice(10 * (desired_page_number - 1), 10)
+        # byebug
 
         render json: {
             page: desired_page_number,
+            total_pages: total_pages,
             items: items, except: [:created_at, :updated_at, :description]
         }
     end
@@ -48,6 +51,12 @@ class ItemsController < ApplicationController
             end
         end
         output
+    end
+
+    def get_total_page_count(items)
+        page_count = items.length / 10
+        page_count += 1 if ( items.length % 10 != 0 )
+        page_count
     end
 
 end
