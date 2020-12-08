@@ -23,9 +23,14 @@ class UsersController < ApplicationController
     end
 
     def update
+        # byebug
         user = User.find(params[:id])
         user.update(sanitized_params)
-        render_user_json(user)
+        if user.errors
+            render json: {message: 'could not update user!'}
+        else
+            render_user_json(user)
+        end
     end
 
     def destroy
