@@ -24,6 +24,13 @@ class ItemsController < ApplicationController
         render json: Item.all.sample, only: [:id, :img_url]
     end
 
+    def destroy
+        Item.find_by_id(params[:id]).destroy
+        render json: {
+            message: 'The item was successfully deleted.'
+        }
+    end
+
     private
 
     def desired_page_number
