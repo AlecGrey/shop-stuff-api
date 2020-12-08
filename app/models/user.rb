@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
     def name_cannot_be_admin
         if self.name.downcase == 'admin'
-            errors.add(:name, "Cannot be 'admin'")
+            errors.add(:name, "cannot be 'admin'")
         end
     end
 

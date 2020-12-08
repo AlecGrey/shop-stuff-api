@@ -6,7 +6,7 @@ class UsersController < ApplicationController
             render_user_json(user)
         else
             render json: {
-                message: "User not found"
+                errors: ["The user was not found"]
             }
         end
     end
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
             render_user_json(user)
         else
             render json: {
-                message: user.errors.full_messages
+                errors: user.errors.full_messages
             }
         end
     end
