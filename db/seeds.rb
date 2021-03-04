@@ -19,7 +19,7 @@ until Item.all.length == 100 do
     if json['count'] != 0 
         etsy_item = json['results'][rand(0...json['results'].length)]
 
-        data = RestClient.get("https://openapi.etsy.com/v2/listings/#{etsy_item['listing_id']}/images?api_key=hpe7uoia9bb85qcm5gh459xq")
+        data = RestClient.get("https://openapi.etsy.com/v2/listings/#{etsy_item['listing_id']}/images?api_key=KEY")
         json = JSON.parse(data)
 
         item_img_url = json['results'][0]['url_570xN']
